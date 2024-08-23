@@ -1,4 +1,5 @@
 from nemo.lightning.pytorch.callbacks.ddp_parity_checker import DdpParityChecker
+from nemo.lightning.pytorch.callbacks.debugging import ParameterDebugger
 from nemo.lightning.pytorch.callbacks.model_checkpoint import ModelCheckpoint
 from nemo.lightning.pytorch.callbacks.model_transform import ModelTransform
 from nemo.lightning.pytorch.callbacks.nsys import NsysCallback
@@ -16,4 +17,5 @@ __all__ = [
     "ProgressPrinter",
     "PreemptionCallback",
     "DdpParityChecker",
+    "ParameterDebugger",
 ]

@@ -287,7 +287,6 @@ class MegatronLMEncoderDecoderModel(MegatronBaseModel):
             en_block_spec = enc_dec_spec_fns[0](self.cfg.encoder.num_layers)
             de_block_spec = enc_dec_spec_fns[1](self.cfg.decoder.num_layers)
 
-
             # # DEBUGGING
             # # set up to match config of NeMo 2.0
             # self.transformer_config.bf16=False
@@ -303,7 +302,6 @@ class MegatronLMEncoderDecoderModel(MegatronBaseModel):
             # self.transformer_config.bias_dropout_fusion=False
             # self.transformer_config.recompute_num_layers=None
             # self.transformer_config.distribute_saved_activations=None
-
 
             encoder_config = copy.deepcopy(self.transformer_config)
             encoder_config.num_layers = self.cfg.encoder.num_layers
@@ -351,7 +349,6 @@ class MegatronLMEncoderDecoderModel(MegatronBaseModel):
             print(model)
             for name, param in model.named_parameters():
                 print("{}: {}".format(name, param.shape))
-
 
         else:
             if not hasattr(self.cfg, 'embedding_init_method_std'):
@@ -709,7 +706,6 @@ class MegatronLMEncoderDecoderModel(MegatronBaseModel):
             # # DEBUGGING
             # print("batch: ")
             # print(batch)
-
 
             if isinstance(batch, tuple):
                 batch = batch[0]

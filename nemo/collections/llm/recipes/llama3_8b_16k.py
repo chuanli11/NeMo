@@ -1,11 +1,11 @@
 from typing import Optional
 
-import torch
-import pytorch_lightning as pl
-from nemo.collections.llm.api import pretrain, finetune
-from nemo.collections.llm.recipes import llama3_8b
 import nemo_run as run
+import pytorch_lightning as pl
+import torch
 
+from nemo.collections.llm.api import finetune, pretrain
+from nemo.collections.llm.recipes import llama3_8b
 
 NAME = "llama3_8b_16k"
 
@@ -40,9 +40,7 @@ def pretrain_recipe(
     num_nodes: int = 1,
     num_gpus_per_node: int = 8,
 ) -> run.Partial:
-    recipe = llama3_8b.pretrain_recipe(
-        name=name, dir=dir, num_nodes=num_nodes, num_gpus_per_node=num_gpus_per_node
-    )
+    recipe = llama3_8b.pretrain_recipe(name=name, dir=dir, num_nodes=num_nodes, num_gpus_per_node=num_gpus_per_node)
 
     recipe.model = model()
     recipe.trainer = trainer(num_nodes=num_nodes, num_gpus_per_node=num_gpus_per_node)
@@ -55,11 +53,9 @@ def finetune_recipe(
     dir: Optional[str] = None,
     name: str = "default",
     num_nodes: int = 1,
-    num_gpus_per_node: int = 8,    
+    num_gpus_per_node: int = 8,
 ) -> run.Partial:
-    recipe = llama3_8b.finetune_recipe(
-        name=name, dir=dir, num_nodes=num_nodes, num_gpus_per_node=num_gpus_per_node
-    )
+    recipe = llama3_8b.finetune_recipe(name=name, dir=dir, num_nodes=num_nodes, num_gpus_per_node=num_gpus_per_node)
 
     recipe.model = model()
     recipe.trainer = trainer(num_nodes=num_nodes, num_gpus_per_node=num_gpus_per_node)

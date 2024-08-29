@@ -70,7 +70,7 @@ def trainer(
     return trainer
 
 
-@run.cli.factory(pretrain, name=NAME)
+@run.cli.factory(target=pretrain, name=NAME)
 def pretrain_recipe(
     dir: Optional[str] = None,
     name: str = "default",
@@ -103,7 +103,7 @@ def hf_resume() -> run.Config[nl.AutoResume]:
     return run.Config(nl.AutoResume, import_path="hf://meta-llama/Meta-Llama-3.1-8B")
 
 
-@run.cli.factory(finetune, name=NAME)
+@run.cli.factory(target=finetune, name=NAME)
 def finetune_recipe(
     dir: Optional[str] = None,
     name: str = "default",

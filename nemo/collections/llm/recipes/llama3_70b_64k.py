@@ -11,7 +11,7 @@ NAME = "llama3_70b_64k"
 
 
 @run.cli.factory(name=NAME)
-def model() -> run.Config:
+def model() -> run.Config[pl.LightningModule]:
     model_config = llama3_70b.model()
     model_config.config.seq_length = 65536
     return model_config

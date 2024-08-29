@@ -19,6 +19,7 @@ from nemo.utils.exp_manager import TimingCallback
 NAME = "llama3_8b"
 
 
+@run.cli.factory(name=NAME)
 def model() -> run.Config[pl.LightningModule]:
     return run.Config(LlamaModel, config=run.Config(Llama3Config8B))
 

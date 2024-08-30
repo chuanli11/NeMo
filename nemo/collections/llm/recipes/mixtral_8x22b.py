@@ -44,7 +44,6 @@ def trainer(
         context_parallel_size=context_parallelism,
         sequence_parallel=sequence_parallelism,
         gradient_as_bucket_view=True,
-        ckpt_include_optimizer=True,
         ckpt_async_save=True,
         ckpt_parallel_load=True,
         ddp=Config(
@@ -100,7 +99,7 @@ def pretrain_recipe(
 
 
 def hf_resume() -> Config[nl.AutoResume]:
-    return Config(nl.AutoResume, restore_path="hf://mistralai/Mixtral-8x22B-v0.1")
+    return Config(nl.AutoResume, selective_restore_config=Config(nl.SelectiveRestoreConfig, path="hf://mistralai/Mixtral-8x22B-v0.1"))
 
 
 def finetune_recipe(name: str, ckpt_dir: str, num_nodes: int, num_gpus_per_node: int) -> Partial:
